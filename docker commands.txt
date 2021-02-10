@@ -1,0 +1,82 @@
+
+docker run -d -p 80:80 docker/getting-started
+
+
+-d - run the container in detached mode (in the background)
+-p 80:80 - map port 80 of the host to port 80 in the container
+docker/getting-started - the image to use
+
+
+~~Commands~~
+-----------------------------------------------------------------
+~docker search ubuntu
+
+~docker search --filter stars=3 ubuntu
+
+~docker search --filter stars=3 --filter is-official=true ubuntu
+
+~docker search --filter stars=100 --filter is-automated=true --no-trunc ubuntu
+
+--------------Images-------------
+~docker images
+
+~docker pull java
+
+~docker images java
+
+
+
+-------------------------------Dockerfile-------------------------
+ARG VERSION=20.04
+
+FROM ubuntu:${VERSION}
+
+RUN apt-get update -y
+
+CMD ["bash"]
+
+
+--------------------------------------------------------------------
+---build dockerFile----
+~docker build .
+
+-change name of the image    my_app = name of the image and :1 represents tag
+~docker build -t my_app:1 .
+
+
+
+--------run image to create container------------
+-to check running container
+~docker ps
+
+-list of all containers
+~docker ps -a
+
+-- docker run options image commands args
+~docker run 9cae3fb1bb58
+
+-to name the container
+~docker run --name my_ubuntu_container 9cae3fb1bb58
+
+
+--Two modes to run the container
+--Attatched mode	(default)
+--Detached mode -- background
+	to run in detached mode::  ~docker run --name my_ubuntu_container_2 -d 9cae3fb1bb58
+
+-To run the container in interactive mode
+~docker run --name my_ubuntu_container_3 -it 9cae3fb1bb58
+
+--------------------test with busybox
+~docker pull busybox
+~docker run busybox echo "hello world"
+
+--run shell inside busybox container
+~docker run -it busybox sh
+
+
+---how to remove some containers
+~docker rm [containerId]
+
+-to stop container
+~docker stop [containerId]
