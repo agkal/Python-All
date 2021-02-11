@@ -67,7 +67,7 @@ CMD ["bash"]
 -To run the container in interactive mode
 ~docker run --name my_ubuntu_container_3 -it 9cae3fb1bb58
 
---------------------test with busybox
+--------------------test with busybox----------------
 ~docker pull busybox
 ~docker run busybox echo "hello world"
 
@@ -80,3 +80,39 @@ CMD ["bash"]
 
 -to stop container
 ~docker stop [containerId]
+
+-------------------------------------------run clang++ for cpp file in container-------------------------
+
+
+
+--create separate dockerfile
+------------------------dockerfile-----------------
+ARG VERSION=latest
+
+FROM ubuntu:${VERSION}
+
+RUN apt-get -y update && apt-get install -y
+
+RUN apt-get -y install clang
+
+COPY . /usr/src/cpp_test
+
+WORKDIR /usr/src/cpp_test
+
+RUN clang++ -o Test main.cpp
+
+CMD [ "./Test" ]
+-----------------------------------------------------
+
+--to build above file
+~docker build . -t python_py:1.0.0
+
+--to run the container for this image
+~docker run --rm -it python_py:1.0.0
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,20 @@
+
+abdul.ghaffar@northbaysolutions.net
+
+To install from local server
+\\192.168.10.3
+
+user2	
+abc@123
+
+
+
+Python to be covered
+
+programiz.com
+
+- iterators
+- generators
+- list comprehension
+- dictionary comprehension
+- list, set, tuple, dictionary
